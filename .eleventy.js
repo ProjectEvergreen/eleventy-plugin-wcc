@@ -1,10 +1,11 @@
+const path = require('path');
+const { pathToFileURL } = require('url');
 const wccPlugin = require('./src/index');
 
 module.exports = function(eleventyConfig) {
-  console.debug('.eleventy.js is running.....');
   eleventyConfig.addPlugin(wccPlugin, {
-    componentModules: [
-      'components/greeting.js'
+    dependencies: [
+      pathToFileURL(path.join(__dirname, './demo/components/greeting.js'))
     ]
   });
 
