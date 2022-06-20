@@ -1,10 +1,15 @@
+const path = require('path');
 const { renderFromHTML } = require('./lib/wcc.dist');
+const { pathToFileURL } = require('url');
 
 module.exports = function (eleventyConfig) {
-  eleventyConfig.addTransform('wcc', async (content) => {
-    const { html } = await renderFromHTML(content);
 
-    console.debug('FROM WCC!!!!!!', html);
+  // console.debug({ eleventyConfig });
+  eleventyConfig.addTransform('wcc', async (content) => {
+    // TODO deps should come from config
+    const { html } = await renderFromHTML(content, [
+      pathToFileURL(path.join(__dirname, '../demo/components/greeting.js'))
+    ]);
 
     return html;
   })
