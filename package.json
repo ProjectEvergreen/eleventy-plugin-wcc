@@ -7,11 +7,12 @@
   "author": "Owen Buckley <owen@thegreenhouse.io>",
   "license": "MIT",
   "scripts": {
-    "demo": "eleventy --input=./demo",
-    "demo:serve": "eleventy --input=./demo --serve"
+    "demo": "node -r esm ./node_modules/.bin/eleventy --input=./demo",
+    "demo:serve": "npm run demo -- --serve"
   },
-  "dependencies": {},
   "devDependencies": {
-    "@11ty/eleventy": "^1.0.1"
+    "@11ty/eleventy": "^1.0.1",
+    "esm": "^3.2.25",
+    "rimraf": "^3.0.2"
   }
 }
