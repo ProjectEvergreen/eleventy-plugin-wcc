@@ -1,14 +1,10 @@
-console.log('hello world???');
+// TODO - currently this breaks 11ty :(
+// import { renderFromHTML } from 'wc-compiler';
 
-function configFunction(eleventyConfig) {
-  console.log('hello world from 11ty plugin!');
-  console.debug({ eleventyConfig });
-}
+export default function(eleventyConfig) {
+  eleventyConfig.addTransform('wcc', async (content) => {
+    console.debug({ content });
 
-export {
-  configFunction
-}
-
-export default function(args) {
-  console.debug('default function', args);
+    return content; // await renderFromHTML(content);
+  })
 }

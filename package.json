@@ -1,6 +1,6 @@
 {
   "name": "eleventy-plugin-wcc",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "description": "An Eleventy plugin for rendering Web Components with WCC",
   "main": "src/index.js",
   "types": "module",
@@ -10,6 +10,9 @@
     "clean": "rimraf ./_site",
     "demo": "npm run clean && node -r esm ./node_modules/.bin/eleventy",
     "demo:serve": "npm run demo -- --serve"
+  },
+  "dependencies": {
+    "wc-compiler": "^0.3.1"
   },
   "devDependencies": {
     "@11ty/eleventy": "^1.0.1",
