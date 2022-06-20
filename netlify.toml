@@ -1,0 +1,9 @@
+[build]
+  publish = "_site/"
+  command = "npm run build"
+
+[build.processing]
+  skip_processing = true
+
+[build.environment]
+  NODE_VERSION = "14.16.0"
