@@ -14055,10 +14055,11 @@ async function getTagName(moduleURL) {
 async function initializeCustomElement(elementURL, tagName, attrs = []) {
   await registerDependencies(elementURL);
 
+  const { pathname } = elementURL;
   const element = tagName
     ? customElements.get(tagName)
-    : (await (function (t) { return Promise.resolve().then(function () { return /*#__PURE__*/_interopNamespace(require(t.pathname)); }); })(elementURL)).default;
-  const dataLoader = (await (function (t) { return Promise.resolve().then(function () { return /*#__PURE__*/_interopNamespace(require(t.pathname)); }); })(elementURL)).getData;
+    : (await (function (t) { return Promise.resolve().then(function () { return /*#__PURE__*/_interopNamespace(require(t)); }); })(pathname)).default;
+  const dataLoader = (await (function (t) { return Promise.resolve().then(function () { return /*#__PURE__*/_interopNamespace(require(t)); }); })(pathname)).getData;
   const data = dataLoader ? await dataLoader() : {};
   const elementInstance = new element(data); // eslint-disable-line new-cap
 
