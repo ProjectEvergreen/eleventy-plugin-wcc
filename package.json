@@ -3,7 +3,6 @@
   "version": "0.0.1",
   "description": "An Eleventy plugin for rendering Web Components with WCC",
   "main": "src/index.js",
-  "type": "module",
   "author": "Owen Buckley <owen@thegreenhouse.io>",
   "license": "MIT",
   "scripts": {
