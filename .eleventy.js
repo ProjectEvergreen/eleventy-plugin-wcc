@@ -1,6 +1,6 @@
-import wccPlugin from './src/index.js';
+const wccPlugin = require('./src/index');
 
-export default function(eleventyConfig) {
+module.exports = function(eleventyConfig) {
   console.debug('.eleventy.js is running.....');
   // eleventyConfig.addPassthroughCopy('./_js');
   eleventyConfig.addPlugin(wccPlugin);

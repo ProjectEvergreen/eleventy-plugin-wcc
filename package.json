@@ -13,7 +13,7 @@
   ],
   "scripts": {
     "clean": "rimraf ./_site",
-    "demo": "npm run clean && node -r esm ./node_modules/.bin/eleventy",
+    "demo": "npm run clean && eleventy",
     "demo:serve": "npm run demo -- --serve"
   },
   "dependencies": {
@@ -21,7 +21,6 @@
   },
   "devDependencies": {
     "@11ty/eleventy": "^1.0.1",
-    "esm": "^3.2.25",
     "rimraf": "^3.0.2"
   }
 }

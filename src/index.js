@@ -1,10 +1,11 @@
-// TODO - currently this breaks 11ty :(
-// import { renderFromHTML } from 'wc-compiler';
+const { renderFromHTML } = require('./lib/wcc.dist');
 
-export default function(eleventyConfig) {
+module.exports = function (eleventyConfig) {
   eleventyConfig.addTransform('wcc', async (content) => {
-    console.debug({ content });
+    const { html } = await renderFromHTML(content);
 
-    return content; // await renderFromHTML(content);
+    console.debug('FROM WCC!!!!!!', html);
+
+    return html;
   })
 }
