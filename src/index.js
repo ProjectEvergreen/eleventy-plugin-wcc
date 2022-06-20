@@ -2,16 +2,15 @@ const { renderFromHTML } = require('./lib/wcc.dist'); // TODO should come from n
 
 module.exports = {
   configFunction: function (eleventyConfig, options = {}) {
-    const { dependencies = [] } = options;
+    const { definitions = [] } = options;
 
     eleventyConfig.addTransform('wcc', async (content, outputPath) => {
       if(!outputPath.endsWith('.html')) {
         return;
       }
 
-      const { html } = await renderFromHTML(content, dependencies);
+      const { html } = await renderFromHTML(content, definitions);
 
-      console.debug({ html });
       return html;
     })
   }
