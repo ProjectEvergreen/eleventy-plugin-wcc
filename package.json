@@ -1,0 +1,17 @@
+{
+  "name": "eleventy-plugin-wcc",
+  "version": "0.1.0",
+  "description": "An Eleventy plugin for rendering Web Components with WCC",
+  "main": "src/index.js",
+  "types": "module",
+  "author": "Owen Buckley <owen@thegreenhouse.io>",
+  "license": "MIT",
+  "scripts": {
+    "demo": "eleventy --input=./demo",
+    "demo:serve": "eleventy --input=./demo --serve"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@11ty/eleventy": "^1.0.1"
+  }
+}
