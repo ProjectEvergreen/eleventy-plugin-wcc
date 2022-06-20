@@ -7,7 +7,8 @@
   "author": "Owen Buckley <owen@thegreenhouse.io>",
   "license": "MIT",
   "scripts": {
-    "demo": "node -r esm ./node_modules/.bin/eleventy --input=./demo",
+    "clean": "rimraf ./_site",
+    "demo": "npm run clean && node -r esm ./node_modules/.bin/eleventy",
     "demo:serve": "npm run demo -- --serve"
   },
   "devDependencies": {
