@@ -25,4 +25,4 @@ jobs:
         npm ci
     - name: Build
       run: |
-        npm run clean && npm run demo
+        npm run clean && npm run build
