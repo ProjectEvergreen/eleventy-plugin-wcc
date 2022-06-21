@@ -21,7 +21,7 @@
     "demo": "npm run build -- --serve"
   },
   "dependencies": {
-    "wc-compiler": "^0.3.1"
+    "wc-compiler": "~0.3.1"
   },
   "devDependencies": {
     "@11ty/eleventy": "^1.0.1",
