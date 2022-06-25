@@ -1,4 +1,4 @@
-const { renderFromHTML } = require('./lib/wcc.dist'); // TODO should come from npm
+const { renderFromHTML } = require('wc-compiler/dist/wcc.dist.cjs');
 
 module.exports = {
   configFunction: function (eleventyConfig, options = {}) {
