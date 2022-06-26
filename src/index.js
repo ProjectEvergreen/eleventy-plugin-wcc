@@ -20,8 +20,8 @@ module.exports = {
     });
 
     eleventyConfig.on('eleventy.beforeWatch', async (changedFiles) => {
-      for(const file of changedFiles) {
-        if(definitionPathnames.includes(file)) {
+      for (const file of changedFiles) {
+        if (definitionPathnames.includes(file)) {
           delete require.cache[require.resolve(file)];
         }
       }
