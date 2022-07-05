@@ -16,7 +16,7 @@ $ npm install eleventy-plugin-wcc --save-dev
 
 ## Configuration
 
-Add the plugin to your _eleventy.js_ config and provide a `URL` for all _top level_ custom element definitions you use.
+Add the plugin to your _eleventy.js_ config and provide a [`URL`](https://developer.mozilla.org/en-US/docs/Web/API/URL) for all _top level_ custom element definitions you use.
 ```js
 const path = require('path');
 const { pathToFileURL } = require('url');
@@ -33,7 +33,8 @@ module.exports = function(eleventyConfig) {
 
 ## Usage
 
-### 1. Create a Component
+### 1. Create a Custom Element
+Write a custom element like below.  In this case, we are using [Declarative Shadow DOM](https://web.dev/declarative-shadow-dom/).
 ```js
 // src/js/greeting.js
 const template = document.createElement('template');
@@ -60,16 +61,8 @@ customElements.define('x-greeting', GreetingComponent);
 
 > **Note**: Since [Eleventy does not support ESM yet](https://github.com/11ty/eleventy/issues/836), you will need to use `module.exports = XXX` instead of `export default XXX` for your definitions.
 
-### 2. Use it
-```md
-<!-- src/index.md -->
-# 11ty + WCC
-
-<x-greeting></x-greeting>
-```
-
-### 3. Update Configuration
-Make sure to use this path in your _.eleventy.js_
+### 2. Update Configuration
+Add your custom element paths to your _.eleventy.js_ config
 ```js
 const path = require('path');
 const { pathToFileURL } = require('url');
@@ -84,11 +77,20 @@ module.exports = function(eleventyConfig) {
 };
 ```
 
+### 3. Use It!
+Now in your content or layouts, use the custom element.
+```md
+<!-- src/index.md -->
+# Hello From 11ty + WCC! 👋
+
+<x-greeting></x-greeting>
+```
+
 ----
 
-Run `eleventy` and you should get an _index.html_ in your _site/_ directory.
+Now if you run `eleventy`, you should get an _index.html_ in your _site/_ directory with the custom element content pre-rendered!  🎈
 ```html
-<h2>11ty + WCC Demo</h2>
+<h2>Hello From 11ty + WCC!</h2>
 <p>
   <x-greeting>
     <template shadowroot="open">
