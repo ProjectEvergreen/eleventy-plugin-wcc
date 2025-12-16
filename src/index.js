@@ -3,7 +3,7 @@ import { stripWrappingParagraphs } from './utils.js';
 
 export const wccPlugin = {
   configFunction: function (eleventyConfig, options = {}) {
-    const { definitions = [] } = options;
+    const { definitions = [], trimParagraphTagsInMd = true } = options;
     const definitionPathnames = definitions.map(definition => definition.pathname);
 
     for (const definition of definitions) {
@@ -15,9 +15,10 @@ export const wccPlugin = {
         return;
       }
 
-      const processedContent = this.inputPath.endsWith('.md')
-        ? stripWrappingParagraphs(content)
-        : content;
+      const processedContent =
+        trimParagraphTagsInMd && this.inputPath.endsWith('.md')
+          ? stripWrappingParagraphs(content)
+          : content;
 
       const { html } = await renderFromHTML(processedContent, definitions);
       return html;
