@@ -4,7 +4,7 @@ template.innerHTML = `
   <p>Hello from the greeting component!</p>
 `;
 
-class GreetingComponent extends HTMLElement {
+export default class GreetingComponent extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
@@ -14,7 +14,5 @@ class GreetingComponent extends HTMLElement {
     this.shadowRoot.appendChild(template.content.cloneNode(true));
   }
 }
-
-module.exports = GreetingComponent;
 
 customElements.define('x-greeting', GreetingComponent);
