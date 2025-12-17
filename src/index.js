@@ -22,7 +22,9 @@ export const wccPlugin = {
     eleventyConfig.on('eleventy.beforeWatch', async (changedFiles) => {
       for (const file of changedFiles) {
         if (definitionPathnames.includes(file)) {
-          delete require.cache[require.resolve(file)];
+          // naive cache busting solution for ESM
+          // https://github.com/nodejs/help/issues/2806
+          await import(`${file}?t=${Date.now()}`); 
         }
       }
     });
