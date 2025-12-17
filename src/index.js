@@ -1,6 +1,6 @@
-const { renderFromHTML } = require('wc-compiler/dist/wcc.dist.cjs');
+import { renderFromHTML } from 'wc-compiler';
 
-module.exports = {
+export const wccPlugin = {
   configFunction: function (eleventyConfig, options = {}) {
     const { definitions = [] } = options;
     const definitionPathnames = definitions.map(definition => definition.pathname);

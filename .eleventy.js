@@ -1,11 +1,9 @@
-const path = require('path');
-const { pathToFileURL } = require('url');
-const wccPlugin = require('./src/index');
+import { wccPlugin } from './src/index.js';
 
-module.exports = function(eleventyConfig) {
+export default function(eleventyConfig) {
   eleventyConfig.addPlugin(wccPlugin, {
     definitions: [
-      pathToFileURL(path.join(__dirname, './demo/components/greeting.js'))
+      new URL('./demo/components/greeting.js', import.meta.url)
     ]
   });
 
