@@ -1,6 +1,6 @@
-const { renderFromHTML } = require('wc-compiler/dist/wcc.dist.cjs');
+import { renderFromHTML } from 'wc-compiler';
 
-module.exports = {
+export const wccPlugin = {
   configFunction: function (eleventyConfig, options = {}) {
     const { definitions = [] } = options;
     const definitionPathnames = definitions.map(definition => definition.pathname);
@@ -22,7 +22,9 @@ module.exports = {
     eleventyConfig.on('eleventy.beforeWatch', async (changedFiles) => {
       for (const file of changedFiles) {
         if (definitionPathnames.includes(file)) {
-          delete require.cache[require.resolve(file)];
+          // naive cache busting solution for ESM
+          // https://github.com/nodejs/help/issues/2806
+          await import(`${file}?t=${Date.now()}`); 
         }
       }
     });

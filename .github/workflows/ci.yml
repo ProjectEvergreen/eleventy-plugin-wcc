@@ -5,16 +5,16 @@ on: [pull_request]
 jobs:
 
   build:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node: [14, 16]
+        node: [22, 24]
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v6
     - name: Use Node.js ${{ matrix.node }}
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node }}
     - name: Installing project dependencies
@@ -23,9 +23,6 @@ jobs:
     - name: Lint
       run: |
         npm run lint
-    # - name: Test
-    #   run: |
-    #     yarn test
     - name: Build
       run: |
-        npm run clean && npm run build
+        npm run build

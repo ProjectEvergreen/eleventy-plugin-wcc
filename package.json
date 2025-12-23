@@ -5,6 +5,7 @@
   "repository": "https://github.com/ProjectEvergreen/eleventy-plugin-wcc",
   "main": "src/index.js",
   "author": "Owen Buckley <owen@thegreenhouse.io>",
+  "type": "module",
   "license": "MIT",
   "keywords": [
     "Eleventy",
@@ -20,11 +21,14 @@
     "build": "npm run clean && eleventy",
     "demo": "npm run build -- --serve"
   },
+  "peerDependencies": {
+    "@11ty/eleventy": "^3.1.0"
+  },
   "dependencies": {
-    "wc-compiler": "~0.5.0"
+    "wc-compiler": "~0.18.0"
   },
   "devDependencies": {
-    "@11ty/eleventy": "^1.0.1",
+    "@11ty/eleventy": "^3.1.0",
     "eslint": "^8.18.0",
     "rimraf": "^3.0.2"
   }
