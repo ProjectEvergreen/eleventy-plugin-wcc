@@ -1,9 +1,44 @@
 import Eleventy from '@11ty/eleventy';
 import { wccPlugin } from '../src/index.js';
 import assert from 'node:assert/strict';
-import { describe, it } from 'node:test';
+import { describe, it, before } from 'node:test';
 
 describe('WCC plugin', () => {
+  let indexMdFile;
+
+  before(async () => {
+    const elev = new Eleventy('demo', 'test/output', {
+      config: function (eleventyConfig) {
+        eleventyConfig.addPlugin(wccPlugin.configFunction);
+      }
+    });
+
+    await elev.init();
+    const elevOutput = await elev.toJSON();
+
+    indexMdFile = elevOutput.find(
+      (file) => file.inputPath === './demo/index.md'
+    );
+    assert.ok(indexMdFile, 'Precondition failed: demo/index.md not found');
+  });
+
+  it('prints the header', () => {
+    const expected = '<h2>11ty + WCC Demo</h2>';
+
+    assert.ok(indexMdFile.content.includes(expected), 'Header not found');
+  });
+
+  it('prints the greeting component', () => {
+    const contentNormalized = indexMdFile.content.replaceAll(/\s+/g, ' ').trim();
+    const expected =
+      '<x-greeting><template shadowrootmode="open"> <p>Hello from the greeting component!</p> </template></x-greeting>';
+
+    assert.ok(
+      contentNormalized.includes(expected),
+      'x-greeting component not found'
+    );
+  });
+
   it('removes wrapping p tags', async () => {
     const elev = new Eleventy('demo', 'test/output', {
       config: function (eleventyConfig) {
@@ -12,7 +47,6 @@ describe('WCC plugin', () => {
     });
 
     await elev.init();
-    
     const elevOutput = await elev.toJSON();
     const result = elevOutput[0].content;
 
