@@ -1,21 +1,26 @@
 import { renderFromHTML } from 'wc-compiler';
+import { stripWrappingParagraphs } from './utils.js';
 
 export const wccPlugin = {
   configFunction: function (eleventyConfig, options = {}) {
-    const { definitions = [] } = options;
+    const { definitions = [], trimParagraphTagsInMd = true } = options;
     const definitionPathnames = definitions.map(definition => definition.pathname);
 
     for (const definition of definitions) {
       eleventyConfig.addWatchTarget(definition.pathname);
     }
 
-    eleventyConfig.addTransform('wcc', async (content, outputPath) => {
+    eleventyConfig.addTransform('wcc', async function (content, outputPath) {
       if (!outputPath.endsWith('.html')) {
         return;
       }
 
-      const { html } = await renderFromHTML(content, definitions);
+      const processedContent =
+        trimParagraphTagsInMd && this.inputPath.endsWith('.md')
+          ? stripWrappingParagraphs(content)
+          : content;
 
+      const { html } = await renderFromHTML(processedContent, definitions);
       return html;
     });
 

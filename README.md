@@ -98,6 +98,6 @@ Now if you run `eleventy`, you should get an _index.html_ in your _site/_ direct
 
 ## Options
 
-Coming soon!
+`trimParagraphTagsInMd` (bool, default true) - Trims unexpected `<p>` tags that markdown puts around custom elements [more details](https://github.com/ProjectEvergreen/eleventy-plugin-wcc/issues/8).
 
 > _Please follow along in our [issue tracker](https://github.com/ProjectEvergreen/eleventy-plugin-wcc/issues) or make a suggestion!_
