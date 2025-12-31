@@ -11,14 +11,14 @@
 Install from NPM.
 
 ```sh
-$ npm i -D eleventy-plugin-wcc
+$ npm i -D @projectevergreen/eleventy-plugin-wcc
 ```
 
 ## Configuration
 
 Add the plugin to your _eleventy.js_ config and provide a [`URL`](https://developer.mozilla.org/en-US/docs/Web/API/URL) for all _top level_ custom element definitions you use.
 ```js
-import { wccPlugin } from 'eleventy-plugin-wcc';
+import { wccPlugin } from '@projectevergreen/eleventy-plugin-wcc';
 
 module.exports = function(eleventyConfig) {
   eleventyConfig.addPlugin(wccPlugin, {
@@ -62,7 +62,7 @@ customElements.define('x-greeting', GreetingComponent);
 Add your custom element paths to your _.eleventy.js_ config
 
 ```js
-import { wccPlugin } from 'eleventy-plugin-wcc';
+import { wccPlugin } from '@projectevergreen/eleventy-plugin-wcc';
 
 module.exports = function(eleventyConfig) {
   eleventyConfig.addPlugin(wccPlugin, {
