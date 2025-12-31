@@ -37,6 +37,16 @@ describe('WCC plugin', () => {
       assert.doesNotMatch(indexMdFile.content, regexp);
     });
   });
+
+  describe('trimParagraphTagsInMd: false', () => {
+    it('leaves wrapping p tags', async () => {
+      const eleventy = setUpEleventy({ trimParagraphTagsInMd: false });
+      const { indexMdFile } = await setUpTemplates(eleventy);
+      const regexp = new RegExp('<p><x-greeting>(.|\\s)*</x-greeting></p>');
+
+      assert.match(indexMdFile.content, regexp);
+    });
+  });
 });
 
 function setUpEleventy(pluginOptions = {}) {
