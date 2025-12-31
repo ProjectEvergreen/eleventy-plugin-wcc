@@ -13,7 +13,7 @@
     "Web Components"
   ],
   "engines": {
-    "node": ">=14"
+    "node": ">=18"
   },
   "scripts": {
     "clean": "rimraf ./_site",
