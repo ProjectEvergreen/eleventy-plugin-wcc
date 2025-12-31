@@ -51,6 +51,7 @@ describe('WCC plugin', () => {
 
 function setUpEleventy(pluginOptions = {}) {
   return new Eleventy('demo', 'test/output', {
+    configPath: null,
     config: function (eleventyConfig) {
       eleventyConfig.addPlugin(wccPlugin, {
         definitions: [
