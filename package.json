@@ -12,9 +12,6 @@
     "WCC",
     "Web Components"
   ],
-  "engines": {
-    "node": ">=18"
-  },
   "scripts": {
     "clean": "rimraf ./_site",
     "lint": "eslint \"src/**/*.js\" \"demo/**/*.js\"",
