@@ -7,19 +7,8 @@ describe('WCC plugin', () => {
   let indexMdFile;
 
   before(async () => {
-    const elev = new Eleventy('demo', 'test/output', {
-      config: function (eleventyConfig) {
-        eleventyConfig.addPlugin(wccPlugin.configFunction);
-      }
-    });
-
-    await elev.init();
-    const elevOutput = await elev.toJSON();
-
-    indexMdFile = elevOutput.find(
-      (file) => file.inputPath === './demo/index.md'
-    );
-    assert.ok(indexMdFile, 'Precondition failed: demo/index.md not found');
+    const templates = await setUpTemplates();
+    ({ indexMdFile } = templates);
   });
 
   it('prints the header', () => {
