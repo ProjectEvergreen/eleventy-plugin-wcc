@@ -5,11 +5,30 @@ function isWhitespaceTextNode(node) {
 }
 
 export const stripWrappingParagraphs = (html) => {
-  const parsedHtml = parse5.parseFragment(html);
-  parsedHtml.childNodes = parsedHtml.childNodes.map(traverseNodes);
+  const isFullHtmlDoc = (/^<(!DOCTYPE )?html>/i).test(html);
+  const parsedHtml = isFullHtmlDoc ? parse5.parse(html) : parse5.parseFragment(html);
+
+  const rootNode = chooseRootNode(parsedHtml);
+  rootNode.childNodes = rootNode.childNodes.map(traverseNodes);
 
   return parse5.serialize(parsedHtml);
 };
+
+function chooseRootNode(parsedHtml, isFullHtmlDoc) {
+  if (isFullHtmlDoc) {
+    const rootNode = parsedHtml.childNodes
+      .find((x) => x.nodeName === 'html')
+      ?.childNodes?.find((x) => x.nodeName === 'body');
+
+    if (!rootNode) {
+      throw new Error('html output is missing the body tag');
+    }
+
+    return rootNode;
+  } else {
+    return parsedHtml;
+  }
+}
 
 function traverseNodes(node) {
   node = stripWrappingParagraph(node);
