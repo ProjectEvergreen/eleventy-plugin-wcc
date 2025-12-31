@@ -64,4 +64,13 @@ describe('stripWrappingParagraphs', () => {
 
     assert.equal(result, expected);
   });
+
+  it('removes double nested wrapping p tags', async () => {
+    const input = '<main><div><p><x-greeting></x-greeting></p></div></main>';
+    const expected = '<main><div><x-greeting></x-greeting></div></main>';
+
+    const result = stripWrappingParagraphs(input);
+
+    assert.equal(result, expected);
+  });
 });
