@@ -4,43 +4,38 @@ import assert from 'node:assert/strict';
 import { describe, it, before } from 'node:test';
 
 describe('WCC plugin', () => {
-  let indexMdFile;
+  describe('Default options', () => {
+    let indexMdFile;
 
-  before(async () => {
-    const templates = await setUpTemplates();
-    ({ indexMdFile } = templates);
-  });
-
-  it('prints the header', () => {
-    const expected = '<h2>11ty + WCC Demo</h2>';
-
-    assert.ok(indexMdFile.content.includes(expected), 'Header not found');
-  });
-
-  it('prints the greeting component', () => {
-    const contentNormalized = indexMdFile.content.replaceAll(/\s+/g, ' ').trim();
-    const expected =
-      '<x-greeting><template shadowrootmode="open"> <p>Hello from the greeting component!</p> </template></x-greeting>';
-
-    assert.ok(
-      contentNormalized.includes(expected),
-      'x-greeting component not found'
-    );
-  });
-
-  it('removes wrapping p tags', async () => {
-    const elev = new Eleventy('demo', 'test/output', {
-      config: function (eleventyConfig) {
-        eleventyConfig.addPlugin(wccPlugin.configFunction);
-      }
+    before(async () => {
+      const templates = await setUpTemplates();
+      ({ indexMdFile } = templates);
     });
 
-    await elev.init();
-    const elevOutput = await elev.toJSON();
-    const result = elevOutput[0].content;
+    it('prints the header', () => {
+      const expected = '<h2>11ty + WCC Demo</h2>';
 
-    const regexp = new RegExp('<p><x-greeting>(.|\\s)*</x-greeting></p>');
-    assert.doesNotMatch(result, regexp);
+      assert.ok(indexMdFile.content.includes(expected), 'Header not found');
+    });
+
+    it('prints the greeting component', () => {
+      const contentNormalized = indexMdFile.content
+        .replaceAll(/\s+/g, ' ')
+        .trim();
+      const expected =
+        '<x-greeting><template shadowrootmode="open"> <p>Hello from the greeting component!</p> </template></x-greeting>';
+
+      assert.ok(
+        contentNormalized.includes(expected),
+        'x-greeting component not found'
+      );
+    });
+
+    it('removes wrapping p tags', () => {
+      const regexp = new RegExp('<p><x-greeting>(.|\\s)*</x-greeting></p>');
+
+      assert.doesNotMatch(indexMdFile.content, regexp);
+    });
   });
 });
 
