@@ -54,3 +54,31 @@ describe('WCC plugin', () => {
     assert.doesNotMatch(result, regexp);
   });
 });
+
+function setUpEleventy(pluginOptions = {}) {
+  return new Eleventy('demo', 'test/output', {
+    config: function (eleventyConfig) {
+      eleventyConfig.addPlugin(wccPlugin, {
+        definitions: [
+          new URL('../demo/components/greeting.js', import.meta.url)
+        ],
+        ...pluginOptions
+      });
+    }
+  });
+}
+
+async function setUpTemplates(eleventy = null) {
+  eleventy ??= setUpEleventy();
+
+  await eleventy.init();
+  const elevOutput = await eleventy.toJSON();
+
+  const indexMdFile = elevOutput.find(
+    (template) => template.inputPath === './demo/index.md'
+  );
+  assert.ok(indexMdFile, 'Precondition failed: demo/index.md not found');
+
+  return { indexMdFile };
+}
+
