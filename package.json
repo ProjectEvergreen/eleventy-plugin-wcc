@@ -12,6 +12,9 @@
     "WCC",
     "Web Components"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "clean": "rimraf ./_site",
     "lint": "eslint \"src/**/*.js\" \"demo/**/*.js\"",
