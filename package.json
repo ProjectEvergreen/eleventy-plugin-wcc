@@ -15,6 +15,9 @@
   "publishConfig": {
     "access": "public"
   },
+  "files": [
+    "src/"
+  ],
   "scripts": {
     "clean": "rimraf ./_site",
     "lint": "eslint \"src/**/*.js\" \"demo/**/*.js\"",
