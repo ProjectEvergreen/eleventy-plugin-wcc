@@ -90,7 +90,7 @@ Now if you run `eleventy`, you should get an _index.html_ in your _site/_ direct
 <h2>Hello From 11ty + WCC!</h2>
 
 <x-greeting>
-  <template shadowroot="open">
+  <template shadowrootmode="open">
     <p>Hello from the greeting component!</p>
   </template>
 </x-greeting>
