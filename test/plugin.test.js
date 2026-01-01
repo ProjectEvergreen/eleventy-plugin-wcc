@@ -50,12 +50,12 @@ describe('WCC plugin', () => {
 });
 
 function setUpEleventy(pluginOptions = {}) {
-  return new Eleventy('demo', 'test/output', {
+  return new Eleventy('test_fixtures', 'test/output', {
     configPath: null,
     config: function (eleventyConfig) {
       eleventyConfig.addPlugin(wccPlugin, {
         definitions: [
-          new URL('../demo/components/greeting.js', import.meta.url)
+          new URL('../test_fixtures/components/greeting.js', import.meta.url)
         ],
         ...pluginOptions
       });
@@ -70,8 +70,9 @@ async function setUpTemplates(eleventy = null) {
   const elevOutput = await eleventy.toJSON();
 
   const indexMdFile = elevOutput.find(
-    (template) => template.inputPath === './demo/index.md'
+    (template) => template.inputPath === './test_fixtures/index.md'
   );
+
   assert.ok(indexMdFile, 'Precondition failed: demo/index.md not found');
 
   return { indexMdFile };
