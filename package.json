@@ -2,8 +2,10 @@
   "name": "@projectevergreen/eleventy-plugin-wcc",
   "version": "0.3.1",
   "description": "An Eleventy plugin for rendering Web Components with WCC.",
-  "repository": "https://github.com/ProjectEvergreen/eleventy-plugin-wcc",
-  "main": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ProjectEvergreen/eleventy-plugin-wcc.git"
+  },
   "author": "Owen Buckley <owen@thegreenhouse.io>",
   "type": "module",
   "license": "MIT",
@@ -18,6 +20,9 @@
   "files": [
     "src/"
   ],
+  "exports": {
+    ".": "./src/index.js"
+  },
   "scripts": {
     "clean": "rimraf ./_site",
     "lint": "eslint \"src/**/*.js\" \"demo/**/*.js\"",
