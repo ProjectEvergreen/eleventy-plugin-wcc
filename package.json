@@ -1,6 +1,6 @@
 {
   "name": "@projectevergreen/eleventy-plugin-wcc",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "An Eleventy plugin for rendering Web Components with WCC.",
   "repository": {
     "type": "git",
