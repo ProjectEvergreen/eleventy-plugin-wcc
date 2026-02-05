@@ -2,7 +2,7 @@
 
 ## Overview
 
-[**Eleventy**](https://www.11ty.dev/) plugin for rendering native Web Components using [**Web Components Compiler (WCC)**](https://github.com/ProjectEvergreen/wcc).
+[**Eleventy**](https://www.11ty.dev/) plugin for rendering native Web Components using [**Web Components Compiler (WCC)**](https://www.wcc.dev).
 
 > _A [starter kit](https://github.com/thescientist13/eleventy-starter-wcc/) for 11ty + WCC is also available._
 
